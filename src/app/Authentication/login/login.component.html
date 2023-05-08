@@ -1,0 +1,97 @@
+<div class="body-bg">
+  <div class="container-fluid">
+    <div class="circle"></div>
+    <div class="login-sec">
+      <div class="row">
+        <div class="col-md-7 login-sec-md-7 col-sm-12">
+          <div class="main-form">
+            <div class="logo-div mt-3">
+              <img src="../../assets/images/logo ppp 2.png" alt="" />
+            </div>
+            <p class="logo-div-p">HOMASO</p>
+            <div class="form-div">
+              <b class="mb-5">Sign in</b>
+              <p class="mb-3">Welcome back, check the data !</p>
+              <p *ngIf="emailErrorMsg" class="errorMsg">
+                {{ emailErrorMsg }}
+              </p>
+              <form action="" class="form login-form">
+                <div class="input-group mb-3" #emailField>
+                  <span
+                    class="input-group-text input-group-text-1"
+                    id="basic-addon1"
+                    #mailIcon
+                    ><img
+                      class="email"
+                      src="../../assets/images/email.png"
+                      alt=""
+                  /></span>
+                  <input
+                    type="email"
+                    #inputVal
+                    [(ngModel)]="loginEmail"
+                    placeholder="Email"
+                    name="email"
+                    class="form-control form-control-1 shadow-none"
+                  />
+                </div>
+                <div class="input-group mb-3" #passField>
+                  <span
+                    class="input-group-text input-group-text-2"
+                    id="basic-addon1"
+                    #passIcon
+                    ><img
+                      class="lock"
+                      src="../../assets/images/lock.png"
+                      alt=""
+                  /></span>
+                  <input
+                    type="password"
+                    #pass
+                    placeholder="Password"
+                    name="password"
+                    class="form-control form-control-2 shadow-none"
+                  />
+                </div>
+
+                <a
+                  routerLink="/forgot_password"
+                  class="nav-link text-primary float-end mb-3"
+                  >Forgot password ?</a
+                >
+                <button
+                  class="btn login-btn"
+                  type="submit"
+                  (click)="
+                    login(
+                      inputVal,
+                      pass,
+                      emailField,
+                      passField,
+                      mailIcon,
+                      passIcon
+                    )
+                  "
+                >
+                  Log In
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 login-img-sec p-0 col-sm-12">
+          <div class="login-sec-md-5-div">
+            <div class="login-sec-md-5-div-1">
+              <h5>Drives your hostel management services easier</h5>
+              <p>
+                This app is only for Administrators or Hostel owners who are
+                associated with CARATRED TECHNOLOGIES.
+              </p>
+            </div>
+            <img class="amico" src="../../assets/images/amico.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

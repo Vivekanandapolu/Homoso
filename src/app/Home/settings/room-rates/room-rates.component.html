@@ -1,0 +1,176 @@
+<app-header></app-header>
+<div class="globalContainer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-3 col-md-4 col-lg-4 col-sm-12">
+        <p>
+          <a class="text-decoration-none text-black" routerLink="/settings">
+            Settings</a
+          >
+          > Rooms Rates
+        </p>
+        <div class="Filter mb-2">
+          <div class="filter-div mb-3">
+            <img
+              src="../../../../assets/images/filter-icon.png"
+              class="filter-icon"
+              alt=""
+            />
+            <h6 class="filter-text m-0">Filters</h6>
+          </div>
+
+          <div class="hostel mb-2">
+            <div class="hostel-search-div d-flex">
+              <p class="hostel-title">Hostels</p>
+              <div class="input-group search-group mb-2">
+                <input
+                  type="search"
+                  class="form-control shadow-none"
+                  name="searchCompany"
+                  placeholder="Search for Hostels"
+                  #search
+                />
+                <span class="input-group-text"
+                  ><img
+                    src="../../../../assets/images/search-icon.png"
+                    class="search-icon"
+                    placeholder="Search for Hostels"
+                    alt=""
+                /></span>
+              </div>
+            </div>
+            <section class="hstl-section">
+              <div
+                class="hostel-list"
+                *ngFor="let hostel of hostelsData; let i = index"
+              >
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    [checked]="hostel.selected"
+                    (change)="radioChecked(hostel.Hostel_id, i)"
+                    [id]="hostel.Hostel_id"
+                  />
+                  <label class="form-check-label" [for]="hostel.Hostel_id">
+                    {{ hostel.HostelName }}
+                  </label>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-9 col-md-8 col-lg-8 col-sm-12">
+        <div class="col-md-12 col-lg-5 col-xl-12 col-sm-12 mt-3 mb-4">
+          <div class="AddRoom">
+            <h4 class="text-danger">{{ companyName }}</h4>
+            <button
+              class="btn btn-primary float-right"
+              (click)="open(content)"
+              (click)="editRoomTypes(null, 'add')"
+            >
+              Add Room Types
+            </button>
+          </div>
+          <ng-template #content let-modal>
+            <div class="modal-body">
+              <div class="modalheader mb-3 d-flex">
+                <h4 class="modal-title" id="modal-basic-title">Room Types</h4>
+                <button
+                  type="button"
+                  class="btn-close"
+                  aria-label="Close"
+                  (click)="modal.dismiss()"
+                ></button>
+              </div>
+              <form class="form" #form="ngForm">
+                <label for="RoomType" class="form-control-label"
+                  ><h6>Select Hostel:</h6></label
+                >
+                <ng-select
+                  [disabled]="roomTypes.hostel_id"
+                  name="HostelName"
+                  placeholder="Select Hostel"
+                  #HostelName="ngModel"
+                  class="mb-3"
+                  [(ngModel)]="roomTypes.HostelName"
+                >
+                  <ng-option
+                    *ngFor="let hostel of hostelsData"
+                    [value]="hostel.HostelName"
+                    >{{ hostel.HostelName }}</ng-option
+                  >
+                </ng-select>
+                <label for="RoomType" class="form-control-label"
+                  ><h6>Room type:</h6></label
+                >
+                <input
+                  id="RoomType"
+                  type="text"
+                  class="form-control mb-3"
+                  name="RoomType"
+                  #RoomType="ngModel"
+                  [(ngModel)]="roomTypes.RoomType"
+                  required
+                  placeholder="Room type"
+                />
+                <label for="BedCount" class="form-control-label"
+                  ><h6>Bed Count:</h6></label
+                >
+                <input
+                  id="BedCount"
+                  type="text"
+                  name="BedCount"
+                  #BedCount="ngModel"
+                  [(ngModel)]="roomTypes.BedCount"
+                  class="form-control"
+                  name="BedCount"
+                  placeholder="count"
+                />
+                <p *ngIf="errorMsg" class="text-danger errorMsg">
+                  {{ errorMsg }}
+                </p>
+              </form>
+            </div>
+
+            <button
+              *ngIf="savebtn"
+              type="button"
+              class="btn update-btn mb-3"
+              (click)="createRoomType(form, modal, RoomType, BedCount, content)"
+            >
+              {{ this.roomTypes.id ? "Update" : "Save" }}
+            </button>
+            <button *ngIf="loader" class="btn submit-btn mb-4" type="button">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </button>
+          </ng-template>
+        </div>
+        <div class="row">
+          <div
+            class="col-xl-3 col-md-4 col-lg-4 col-sm-12 mb-3"
+            *ngFor="let share of Rooms"
+          >
+            <div class="card sharing-card">
+              <div class="card-body sharing">
+                <div class="sharing-div">
+                  <h5>{{ share.RoomType }}</h5>
+                  <p>{{ share.BedCount }} Beds</p>
+                </div>
+                <img
+                  (click)="open(content)"
+                  (click)="editRoomTypes(share, 'edit')"
+                  src="../../../../assets/images/Edit-icon.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

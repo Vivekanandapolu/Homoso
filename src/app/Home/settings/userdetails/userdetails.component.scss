@@ -1,0 +1,70 @@
+.companies-search-div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.companies-search-div > .input-group-text {
+  background: white;
+  border-radius: 0;
+}
+.companies-search-div > .form-control {
+  border-right: none;
+  border-radius: 0;
+  padding-right: 20px;
+  padding-left: 20px;
+  font-size: 18px;
+}
+
+.state-select,
+.state-city {
+  display: flex;
+}
+.state-select img,
+.state-city img {
+  object-fit: contain;
+  border: 1px solid #00000024;
+  border-right: 0;
+}
+.form-select {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: 0;
+  box-shadow: none;
+  border-color: #00000024;
+}
+.text-area {
+  display: flex;
+}
+.text-area textarea {
+  box-shadow: none;
+  border-color: #00000024;
+}
+.add-comp-btn {
+  background-color: #cc3636;
+  color: white;
+  width: 100%;
+}
+
+.add-comp-modal {
+  padding: 10px 40px;
+}
+
+.add-comp-btn {
+  margin-bottom: 15px;
+}
+.hostels {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.selectHostels {
+  display: flex;
+  //   align-items: flex-start;
+  justify-content: start;
+}
+.selectHostels img {
+  margin-right: 20px;
+}
+.hostels .form-check {
+  margin-right: 30px;
+}

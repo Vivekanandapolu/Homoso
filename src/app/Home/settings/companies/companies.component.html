@@ -1,0 +1,239 @@
+<app-header></app-header>
+<div class="globalContainer">
+  <div class="container-fluid">
+    <p>
+      <b
+        ><a routerLink="/settings" class="text-decoration-none text-black">
+          Settings</a
+        ></b
+      >
+      > companies
+    </p>
+    <div class="companies-search-div">
+      <div class="input-group search-group mb-2 w-50">
+        <input
+          type="search"
+          class="form-control shadow-none searchCompany"
+          name="searchCompany"
+          placeholder="Search for Companies"
+          #search
+        />
+        <span class="searchCompany-input-group-text input-group-text"
+          ><img
+            src="../../../../assets/images/search-icon.png"
+            class="search-icon"
+            alt=""
+        /></span>
+      </div>
+      <button
+        *ngIf="user_type"
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        (click)="editCompany(null, 'add')"
+      >
+        Add Company
+      </button>
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <!-- Add Company-->
+        <div class="modal-dialog" id="CompanyModal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body add-comp-modal">
+              <h4 class="AddCompany-title">
+                {{ this.companyData.Company_id ? "Edit" : "Add" }} Company
+                Details
+              </h4>
+              <form class="form" #form="ngForm">
+                <div class="input-group mb-3">
+                  <span class="input-group-text">
+                    <img
+                      src="../../../../assets/images/companyName-icon.png"
+                      alt=""
+                    />
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Company Name"
+                    #CompanyName="ngModel"
+                    name="CompanyName"
+                    [(ngModel)]="companyData.CompanyName"
+                    required
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">
+                    <img
+                      src="../../../../assets/images/email-icon.png"
+                      alt=""
+                    />
+                  </span>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Email"
+                    #Email="ngModel"
+                    name="Email"
+                    [(ngModel)]="companyData.Email"
+                    required
+                    [disabled]="this.companyData.Company_id"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">
+                    <img
+                      src="../../../../assets/images/contactName-icon.png"
+                      alt=""
+                    />
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Contact Name"
+                    #ContactName="ngModel"
+                    name="ContactName"
+                    [(ngModel)]="companyData.ContactName"
+                    required
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">
+                    <img
+                      src="../../../../assets/images/contactNumber.png"
+                      alt=""
+                    />
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Contact Number"
+                    #ContactNumber="ngModel"
+                    name="ContactNumber"
+                    [(ngModel)]="companyData.ContactNumber"
+                    required
+                  />
+                </div>
+
+                <div class="state-select mb-3">
+                  <img
+                    src="../../../../assets/images/location-icon.png"
+                    alt=""
+                  />
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    #State="ngModel"
+                    name="State"
+                    [(ngModel)]="companyData.State"
+                    required
+                  >
+                    <option selected disabled ngValue="select">
+                      select state
+                    </option>
+                    <option *ngFor="let i of this.states" [value]="i.name">
+                      {{ i.name }}
+                    </option>
+                  </select>
+                </div>
+                <div class="state-city mb-3">
+                  <img
+                    src="../../../../assets/images/location-icon.png"
+                    alt=""
+                  />
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    #City="ngModel"
+                    name="City"
+                    [(ngModel)]="companyData.City"
+                    required
+                  >
+                    <option selected>Select city</option>
+                    <option
+                      *ngFor="let cityname of this.citiesData"
+                      [value]="cityname.city"
+                    >
+                      {{ cityname.city }}
+                    </option>
+                  </select>
+                </div>
+                <div class="text-area input-group mb-3">
+                  <span class="input-group-text"
+                    ><img
+                      src="../../../../assets/images/location-icon.png"
+                      alt=""
+                  /></span>
+                  <textarea
+                    #Address="ngModel"
+                    placeholder="Address"
+                    name="text-area"
+                    class="form-control"
+                    rows="3"
+                    name="Address"
+                    [(ngModel)]="companyData.Address"
+                    required
+                  ></textarea>
+                </div>
+              </form>
+              <button
+                type="submit"
+                class="btn btn-primary add-comp-btn"
+                (click)="addCompany(form)"
+              >
+                {{ this.companyData.Company_id ? "Update" : "Save" }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <table class="table">
+      <thead class="table table-info">
+        <tr>
+          <th>CompanyName</th>
+          <th>ContactName</th>
+          <th>ContactNumber</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of this.resposeData">
+          <td>{{ i.CompanyName }}</td>
+          <td>{{ i.ContactName }}</td>
+          <td>{{ i.ContactNumber }}</td>
+          <td>{{ i.Email }}</td>
+          <td>{{ i.Address }}</td>
+          <td>{{ i.City }}</td>
+          <td>{{ i.State }}</td>
+          <td
+            class="btn"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="editCompany(i, 'edit')"
+          >
+            <img src="../../../../assets/images/Edit-icon.png" alt="" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

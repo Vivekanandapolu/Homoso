@@ -1,0 +1,67 @@
+<div class="body-bg">
+  <div class="container-fluid">
+    <div class="circle"></div>
+    <div class="login-sec">
+      <div class="row">
+        <div class="col-md-7 login-sec-md-7 col-sm-12">
+          <div class="main-form">
+            <div class="logo-div mt-3">
+              <img src="../../../assets/images/logo ppp 2.png" alt="" />
+            </div>
+            <p class="logo-div-p mb-3">HOMOSO</p>
+            <div class="form-div">
+              <p class="mb-3">Please enter your valid mail</p>
+              <form action="" class="login-form">
+                <div class="input-group mb-4" #forgotEmailField>
+                  <span
+                    class="input-group-text input-group-text-1"
+                    id="basic-addon1"
+                    ><img
+                      class="email"
+                      src="../../../assets/images/email.png"
+                      alt=""
+                  /></span>
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    #emails
+                    class="form-control form-control-1 shadow-none"
+                  />
+                </div>
+
+                <button
+                  *ngIf="show"
+                  (click)="forgotPassword(emails, submit_btn,forgotEmailField)"
+                  #submit_btn
+                  class="btn submit-btn mb-4"
+                  type="button"
+                >
+                  Submit
+                </button>
+                <button *ngIf="hide" class="btn submit-btn mb-4" type="button">
+                  <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </button>
+                <a routerLink="/" class="nav-link back-to-login text-primary">
+                  Back to Login?
+                </a>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 login-img-sec p-0 col-sm-12">
+          <div class="login-sec-md-5-div">
+            <div class="login-sec-md-5-div-1">
+              <img
+                class="amico"
+                src="../../../assets/images/forgot-img.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

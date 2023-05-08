@@ -1,0 +1,331 @@
+<app-header></app-header>
+<div class="globalContainer" #globalVal>
+  <div class="container-fluid">
+    <div class="tenant-con" #tenantCon>
+      <p class="tenant-text">Settings</p>
+      <div class="container-fluid">
+        <div class="row">
+          <div
+            routerLink="hostels"
+            class="col card-sec col-md-3 col-xl-3 col-lg-3 col-sm-12"
+          >
+            <div class="card">
+              <div class="card-body">
+                <div class="card-img-sec mb-3">
+                  <span
+                    ><img
+                      class="card-img"
+                      src="../../../assets/images/Hostels.png"
+                      alt=""
+                  /></span>
+                  <span
+                    ><img
+                      class="right-arrow"
+                      src="../../../assets/images/right-arow.png"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="card-body-text">
+                  <h5 class="card-title mb-2">Hostels</h5>
+                  <p class="card-text" placement="top">
+                    Let me show your hostel list
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col card-sec col-md-3 col-xl-3 col-lg-3 col-sm-12"
+            routerLink="rooms"
+          >
+            <div class="card">
+              <div class="card-body">
+                <div class="card-img-sec mb-3">
+                  <span
+                    ><img
+                      class="card-img"
+                      src="../../../assets/images/Rooms.png"
+                      alt=""
+                  /></span>
+                  <span
+                    ><img
+                      class="right-arrow"
+                      src="../../../assets/images/right-arow.png"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="card-body-text">
+                  <h5 class="card-title- mb-2">Rooms</h5>
+                  <p class="card-text">Check your room status</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col card-sec col-md-3 col-xl-3 col-lg-3 col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-img-sec mb-3">
+                  <span
+                    ><img
+                      class="card-img"
+                      src="../../../assets/images/electricity.png"
+                      alt=""
+                  /></span>
+                  <span
+                    ><img
+                      class="right-arrow"
+                      src="../../../assets/images/right-arow.png"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="card-body-text">
+                  <h5 class="card-title mb-2">Electricity Initial Readings</h5>
+                  <p class="card-text">
+                    Want your electricity bills? Check it out!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col card-sec col-md-3 col-xl-3 col-lg-3 col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-img-sec mb-3">
+                  <span
+                    ><img
+                      class="card-img"
+                      src="../../../assets/images/addOnServices.png"
+                      alt=""
+                  /></span>
+                  <span
+                    ><img
+                      class="right-arrow"
+                      src="../../../assets/images/right-arow.png"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="card-body-text">
+                  <h5 class="card-title mb-2">Property Settings</h5>
+                  <p class="card-text">Want to configure your properties?</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            routerLink="companies"
+            class="col card-sec col-md-3 col-xl-3 col-lg-3 col-sm-12"
+            *ngIf="Supervisor"
+          >
+            <div class="card">
+              <div class="card-body">
+                <div class="card-img-sec mb-3">
+                  <span
+                    ><img
+                      class="card-img"
+                      src="../../../assets/images/companies.png"
+                      alt=""
+                  /></span>
+                  <span
+                    ><img
+                      class="right-arrow"
+                      src="../../../assets/images/right-arow.png"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="card-body-text">
+                  <h5 class="card-title mb-2">Companies</h5>
+                  <p class="card-text">Enlist your Hostels in companies</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col card-sec col-md-3 col-xl-3 col-lg-3 col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-img-sec mb-3">
+                  <span
+                    ><img
+                      class="card-img"
+                      src="../../../assets/images/addOnServices.png"
+                      alt=""
+                  /></span>
+                  <span
+                    ><img
+                      class="right-arrow"
+                      src="../../../assets/images/right-arow.png"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="card-body-text">
+                  <h5 class="card-title mb-2">Add On Services</h5>
+                  <p class="card-text">Check and add your hostel services</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col card-sec col-md-3 col-xl-3 col-lg-3 col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-img-sec mb-3">
+                  <span
+                    ><img
+                      class="card-img"
+                      src="../../../assets/images/Company rates.png"
+                      alt=""
+                  /></span>
+                  <span
+                    ><img
+                      class="right-arrow"
+                      src="../../../assets/images/right-arow.png"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="card-body-text">
+                  <h5 class="card-title mb-2">Company Rates</h5>
+                  <p class="card-text">
+                    You can fix the rates of hostels at a time!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col card-sec col-md-3 col-xl-3 col-lg-3 col-sm-12"
+            routerLink="room_rates"
+          >
+            <div class="card card-sec-cards">
+              <div class="card-body">
+                <div class="card-img-sec mb-3">
+                  <span
+                    ><img
+                      class="card-img"
+                      src="../../../assets/images/room types.png"
+                      alt=""
+                  /></span>
+                  <span
+                    ><img
+                      class="right-arrow"
+                      src="../../../assets/images/right-arow.png"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="card-body-text">
+                  <h5 class="card-title mb-2">Room Rates</h5>
+                  <p class="card-text">Here you can fix Room Rates !</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col card-sec col-md-3 col-xl-3 col-lg-3 col-sm-12"
+            routerLink="room_types"
+          >
+            <div class="card card-sec-cards">
+              <div class="card-body">
+                <div class="card-img-sec mb-3">
+                  <span
+                    ><img
+                      class="card-img"
+                      src="../../../assets/images/room types.png"
+                      alt=""
+                  /></span>
+                  <span
+                    ><img
+                      class="right-arrow"
+                      src="../../../assets/images/right-arow.png"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="card-body-text">
+                  <h5 class="card-title mb-2">Room Types</h5>
+                  <p class="card-text">Check the types of rooms you have!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col card-sec col-md-3 col-xl-3 col-lg-3 col-sm-12">
+            <div class="card card-sec-cards">
+              <div class="card-body">
+                <div class="card-img-sec mb-3">
+                  <span
+                    ><img
+                      class="card-img"
+                      src="../../../assets/images/discounts.png"
+                      alt=""
+                  /></span>
+                  <span
+                    ><img
+                      class="right-arrow"
+                      src="../../../assets/images/right-arow.png"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="card-body-text">
+                  <h5 class="card-title mb-2">Discounts</h5>
+                  <p class="card-text">Add discounts for your hostels!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col card-sec col-md-3 col-xl-3 col-lg-3 col-sm-12">
+            <div class="card card-sec-cards">
+              <div class="card-body">
+                <div class="card-img-sec mb-3">
+                  <span
+                    ><img
+                      class="card-img"
+                      src="../../../assets/images/Promotions.png"
+                      alt=""
+                  /></span>
+                  <span
+                    ><img
+                      class="right-arrow"
+                      src="../../../assets/images/right-arow.png"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="card-body-text">
+                  <h5 class="card-title mb-2">Promotions</h5>
+                  <p
+                    class="card-text"
+                    placement="top"
+                    ngbTooltip="You can promote by adding discounts periodically!"
+                  >
+                    You can promote...
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col card-sec col-md-3 col-xl-3 col-lg-3 col-sm-12"
+            routerLink="user-details"
+          >
+            <div class="card card-sec-cards">
+              <div class="card-body">
+                <div class="card-img-sec mb-3">
+                  <span
+                    ><img
+                      class="card-img"
+                      src="../../../assets/images/user details.png"
+                      alt=""
+                  /></span>
+                  <span
+                    ><img
+                      class="right-arrow"
+                      src="../../../assets/images/right-arow.png"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="card-body-text">
+                  <h5 class="card-title mb-2">User Details</h5>
+                  <p class="card-text">Check the details of the users!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

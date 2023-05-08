@@ -1,1 +1,22 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
 /* You can add global styles to this file, and also import other style files */
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f5f5f5 !important;
+  scroll-behavior: smooth;
+}
+
+@media (min-width: 800px) {
+  .globalContainer {
+    margin-left: 80px !important;
+    margin-top: 47px !important;
+  }
+}
+@media (max-width: 800px) {
+  .globalContainer {
+    margin-left: 0px !important;
+  }
+}
+
+/* Importing Bootstrap SCSS file. */
+@import "bootstrap/scss/bootstrap";

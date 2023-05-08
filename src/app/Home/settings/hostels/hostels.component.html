@@ -1,0 +1,290 @@
+<app-header></app-header>
+<div class="globalContainer">
+  <div class="container-fluid">
+    <p>
+      <b
+        ><a routerLink="/settings" class="text-decoration-none text-black">
+          Settings</a
+        ></b
+      >
+      > Hostels
+    </p>
+    <div class="companies-search-div">
+      <div class="input-group search-group mb-2 w-50">
+        <input
+          type="search"
+          class="form-control shadow-none searchHostel"
+          name="searchHostel"
+          placeholder="Search for Hostels"
+          #search
+        />
+        <span class="searchCompany-input-group-text input-group-text"
+          ><img
+            src="../../../../assets/images/search-icon.png"
+            class="search-icon"
+            alt=""
+        /></span>
+      </div>
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        (click)="editCompany(null, 'add')"
+        (click)="comp_Name()"
+      >
+        Add Hostel
+      </button>
+    </div>
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <!-- Add Hostel-->
+      <div class="modal-dialog" id="CompanyModal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4>{{ this.compayName }}</h4>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              data-bs-target="#exampleModal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="header-sec">
+              <h4 class="modal-title" id="modal-basic-title">
+                {{ !this.Hostels.Hostel_id ? "Add " : "Edit" }} Hostel Details
+              </h4>
+            </div>
+            <form class="form" aria-required="true" #form="ngForm">
+              <div class="input-group mb-3">
+                <span class="input-group-text">
+                  <img src="../../../../assets/images/hostelIcon.png" alt="" />
+                </span>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Hostel Name"
+                  name="HostelName"
+                  #HostelName="ngModel"
+                  [(ngModel)]="Hostels.HostelName"
+                  required
+                />
+              </div>
+              <div class="gender">
+                <div class="form-check gender-male">
+                  <input
+                    class="form-check-input d-none"
+                    type="radio"
+                    name="HostelType"
+                    id="flexRadioDefault1"
+                    value="Mens"
+                    #HostelType="ngModel"
+                    [(ngModel)]="Hostels.HostelType"
+                  />
+                  <label
+                    class="form-check-label male-label"
+                    for="flexRadioDefault1"
+                  >
+                    <img
+                      class="male"
+                      src="../../../../assets/images/maleIcon1.png"
+                      alt=""
+                    />
+                    <img
+                      src="../../../../assets/images/maleIcon.png"
+                      class="male1"
+                      alt=""
+                    />
+                    <label for="flexRadioDefault1">Male</label>
+                  </label>
+                </div>
+                <div class="form-check gender-female">
+                  <input
+                    class="form-check-input d-none"
+                    type="radio"
+                    value="Womens"
+                    name="HostelType"
+                    id="flexRadioDefault2"
+                    #HostelType="ngModel"
+                    [(ngModel)]="Hostels.HostelType"
+                  />
+                  <label
+                    class="form-check-label female-label"
+                    for="flexRadioDefault2"
+                  >
+                    <img
+                      src="../../../../assets/images/femaleIcon.png"
+                      alt=""
+                    />
+                    <label for="flexRadioDefault2">Female</label>
+                  </label>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text">
+                  <img
+                    src="../../../../assets/images/contactNumber.png"
+                    alt=""
+                  />
+                </span>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Contact Number"
+                  name="ContactNumber"
+                  #ContactNumber="ngModel"
+                  required
+                  [(ngModel)]="Hostels.ContactNumber"
+                />
+              </div>
+
+              <div class="state-select mb-3">
+                <img src="../../../../assets/images/location-icon.png" alt="" />
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  name="State"
+                  #State="ngModel"
+                  [(ngModel)]="Hostels.State"
+                  required
+                >
+                  <option selected disabled ngValue="select">
+                    select state
+                  </option>
+                  <option
+                    *ngFor="let state of this.states"
+                    [value]="state.name"
+                  >
+                    {{ state.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="state-city mb-3">
+                <img src="../../../../assets/images/location-icon.png" alt="" />
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  name="City"
+                  #City="ngModel"
+                  [(ngModel)]="Hostels.City"
+                  required
+                >
+                  <option selected>Select city</option>
+                  <option
+                    *ngFor="let cityname of this.citiesData"
+                    [value]="cityname.city"
+                  >
+                    {{ cityname.city }}
+                  </option>
+                </select>
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text">
+                  <img
+                    src="../../../../assets/images/location-icon.png"
+                    alt=""
+                  />
+                </span>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Pincode"
+                  name="PinCode"
+                  #PinCode="ngModel"
+                  [(ngModel)]="Hostels.PinCode"
+                  required
+                />
+              </div>
+              <div class="text-area input-group mb-3">
+                <span class="input-group-text"
+                  ><img
+                    src="../../../../assets/images/location-icon.png"
+                    alt=""
+                /></span>
+                <textarea
+                  placeholder="Address 1"
+                  class="form-control"
+                  rows="3"
+                  name="Address1"
+                  #Address1="ngModel"
+                  [(ngModel)]="Hostels.Address1"
+                  required
+                ></textarea>
+              </div>
+              <div class="text-area input-group mb-3">
+                <span class="input-group-text"
+                  ><img
+                    src="../../../../assets/images/location-icon.png"
+                    alt=""
+                /></span>
+                <textarea
+                  placeholder="Address 2"
+                  class="form-control"
+                  rows="3"
+                  name="Address2"
+                  #Address2="ngModel"
+                  [(ngModel)]="Hostels.Address2"
+                  required
+                ></textarea>
+              </div>
+            </form>
+            <button
+              type="submit"
+              (click)="addCompany(form, null)"
+              class="update-btn"
+              data-bs-toggle="modal"
+              data-bs-dismiss="ngModel"
+              [(ngModel)]="addClass"
+            >
+              {{ this.Hostels.Hostel_id ? "Update" : "Save" }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <table class="table">
+      <thead class="table table-info">
+        <tr>
+          <th>Hostel Name</th>
+          <th>Hostel Type</th>
+          <th>Contact Number</th>
+          <th>Address 1</th>
+          <th>Address 2</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Pincode</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of this.hostelsData">
+          <td>{{ i.HostelName }}</td>
+          <td>{{ i.HostelType }}</td>
+          <td>{{ i.ContactNumber }}</td>
+          <td>{{ i.Address1 }}</td>
+          <td>{{ i.Address2 }}</td>
+          <td>{{ i.City }}</td>
+          <td>{{ i.State }}</td>
+          <td>{{ i.PinCode }}</td>
+          <td
+            class="btn"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="editCompany(i, 'edit')"
+          >
+            <img src="../../../../assets/images/Edit-icon.png" alt="" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+.companies-search-div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.companies-search-div > .input-group-text {
+  background: white;
+  border-radius: 0;
+}
+.companies-search-div > .form-control {
+  border-right: none;
+  border-radius: 0;
+  padding-right: 20px;
+  padding-left: 20px;
+  font-size: 18px;
+}
+.gender {
+  display: flex;
+  justify-content: space-around;
+}
+.gender-male,
+.gender-female {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  border: 1px solid #333333;
+}
+.gender-female {
+  color: black;
+  border: 1px solid #333333;
+}
+.gender-male h5,
+.gender-female h5 {
+  margin: 0;
+  font-size: 18px;
+}
+.modal-body {
+  padding: 10px 50px;
+}
+.header-sec {
+  display: flex;
+  align-items: baseline !important;
+  justify-content: space-between !important;
+  margin-bottom: 30px !important;
+}
+.state-select,
+.state-city {
+  display: flex;
+  align-items: center;
+}
+.modal-dialog {
+  width: 28rem !important;
+}
+.form-check,
+.form-check label {
+  cursor: pointer;
+}
+input[type="radio"] + label {
+  padding: 10px 30px;
+}
+
+input[type="radio"] + label > .male1 {
+  display: none;
+}
+
+input[type="radio"]:checked + label {
+  background-color: #5e6f87;
+  color: white;
+  border-radius: 14px;
+  .gender-female,
+  .gender-male {
+    border: 0;
+  }
+}
+.update-btn {
+  width: 100%;
+  padding: 5px;
+  background: #cc3636;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-header h4 {
+  margin: 0;
+  color: #cc3636;
+}
+.update-btn {
+  margin-bottom: 15px;
+}

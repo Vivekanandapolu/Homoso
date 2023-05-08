@@ -1,0 +1,304 @@
+.company-title,
+.hostel-title,
+.bed-title,
+.sharing-title {
+  color: #cc3636;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0px !important;
+}
+.search-group {
+  margin-left: 6px;
+}
+.search-group .input-group-text {
+  border-left: none;
+}
+.hostel-search-div .input-group {
+  margin-left: 39px;
+}
+.company-search-div,
+.hostel-search-div {
+  display: flex;
+  align-items: baseline;
+  margin: 0 10px;
+}
+.bed-title,
+.sharing-title {
+  margin-left: 10px !important;
+}
+.filter-text {
+  color: #183153;
+  font-size: 24px;
+}
+.filter-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.company,
+.hostel,
+.bedstatus {
+  border-bottom: 1px solid #c9c8c8;
+}
+.Filter {
+  background-color: white;
+}
+.hstl-section {
+  height: 210px;
+  overflow-y: scroll;
+}
+
+.hostels-list::-webkit-scrollbar {
+  display: none;
+  //   overflow: hidden !important;
+}
+
+.companies-list,
+.hostel-list,
+.beds {
+  margin: 10px 30px;
+}
+.beds {
+  display: -webkit-inline-box;
+  flex-wrap: wrap;
+}
+.beds div {
+  cursor: pointer;
+}
+.form-check {
+  margin-right: 10px;
+}
+.sharings-div {
+  display: flex;
+  flex-wrap: wrap;
+}
+label {
+  font-size: 13px;
+}
+.sharings-div {
+  margin: 5px 30px;
+  justify-content: space-between;
+}
+.sharing .form-check {
+  //   border: 1px solid rgba(0, 0, 0, 0.438);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.Filter .input-group-text {
+  height: 30px;
+  background: none;
+  padding: 0;
+  padding-right: 8px;
+}
+
+.Filter .form-control {
+  border-right: 0px;
+  //   margin-left: 32px;
+  height: 30px;
+  font-size: 12px;
+  padding-right: 4px;
+}
+.bed-indicators {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: min(6px);
+  align-items: flex-start;
+}
+.bed-indicators p {
+  font-size: 13px;
+  margin: 0;
+}
+.bed-indicators h4 {
+  position: relative;
+  left: 17rem;
+  top: 10px;
+  font-size: 27px;
+}
+.vacant-div,
+.occupied-div,
+.reserved-div {
+  display: flex;
+  margin-right: 10px;
+  align-items: baseline;
+}
+.vacant-div span,
+.occupied-div span,
+.reserved-div span {
+  margin-right: 10px;
+}
+
+.bed-search-div .form-control,
+.bed-search-div span {
+  border-radius: 0;
+}
+.bed-search-div .input-group-text {
+  background: white;
+  padding: 0;
+  padding-right: 8px;
+  border-left: none;
+}
+.form-control:focus + .input-group-text {
+  border-color: #86b7fe !important;
+}
+.bed-search-div .form-control {
+  border-right: 0;
+}
+.card-div-2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+.beds-card .card-body {
+  display: flex;
+  //   padding-bottom: 0;
+  //   padding-top: 0;
+  padding-right: 5px;
+}
+
+.bed-cols {
+  //   padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.card-div-2 > div {
+  padding: 4px 12px;
+  height: fit-content;
+}
+.card-div-1 .card-title,
+.card-div-1 h6,
+.card-div-1 p {
+  color: #183153 !important;
+}
+.card-div-2 div {
+  border-radius: 10px;
+}
+.card-div-1 p {
+  margin: 0;
+}
+.bed_1,
+.bed_3,
+.bed_5,
+.bed_6,
+.bed_9 {
+  background-color: #cc3636;
+  color: white;
+  border: 1px solid #cc3636;
+}
+.bed_2,
+.bed_8,
+.bed_7 {
+  background-color: #16de67;
+  border: 1px solid #16de67;
+  color: white;
+}
+
+.bed_4 {
+  background-color: #333333;
+  color: white;
+  border: 1px solid #333333;
+}
+.bed_4:hover {
+  background-color: white;
+  color: #333333;
+}
+.bed_1:hover,
+.bed_3:hover,
+.bed_5:hover,
+.bed_6:hover,
+.bed_9:hover {
+  background: white;
+  color: #cc3636;
+}
+
+.bed_2:hover,
+.bed_8:hover,
+.bed_7:hover {
+  background-color: white;
+  border: 1px solid #16de67;
+  color: #16de67;
+}
+.sec-row {
+  padding-right: 16px;
+}
+.foodtext {
+  font-size: 12px;
+  width: max-content;
+}
+.roomno {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: burlywood;
+  padding: 5px 20px;
+  margin: 0px !important;
+}
+.food-div {
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 32px; */
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  // left: -18px;
+  // top: 30px;
+}
+.food-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0px;
+  background: #000000a8;
+  padding: 0left;
+  padding: 0;
+  left: 0px;
+  color: white;
+  padding: 0px 10px;
+}
+.food-footer p {
+  margin: 0px;
+}
+.fis-p,
+.sec-p {
+  border-right: 1px solid;
+  padding-right: 10px;
+}
+.modalheader {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+}
+.update-btn {
+  margin: 0px 16px;
+}
+.main-bed-search-div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.main-bed-search-div .bed-search-div {
+  width: fit-content;
+}
+.indicators {
+  display: flex;
+  align-items: center;
+}
+.room-header {
+  display: flex;
+  flex-direction: column;
+}
+.room-header p {
+  margin: 0px;
+}
+.room-header h5 {
+  font-weight: bold;
+}
+.roomno img {
+  background: gainsboro !important;
+  padding: 7px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+}

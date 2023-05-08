@@ -1,0 +1,203 @@
+<app-header></app-header>
+<div class="globalContainer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-3 col-md-4 col-lg-4 col-sm-12">
+        <p>
+          <a class="text-decoration-none text-black" routerLink="/settings">
+            Settings</a
+          >
+          > Rooms Rates
+        </p>
+        <div class="Filter mb-2">
+          <div class="filter-div mb-3">
+            <img
+              src="../../../../assets/images/filter-icon.png"
+              class="filter-icon"
+              alt=""
+            />
+            <h6 class="filter-text m-0">Filters</h6>
+          </div>
+
+          <div class="hostel mb-2">
+            <div class="hostel-search-div d-flex">
+              <p class="hostel-title">Hostels</p>
+              <div class="input-group search-group mb-2">
+                <input
+                  type="search"
+                  class="form-control shadow-none"
+                  name="searchCompany"
+                  placeholder="Search for Hostels"
+                  #search
+                />
+                <span class="input-group-text"
+                  ><img
+                    src="../../../../assets/images/search-icon.png"
+                    class="search-icon"
+                    placeholder="Search for Hostels"
+                    alt=""
+                /></span>
+              </div>
+            </div>
+            <section class="hstl-section">
+              <div
+                class="hostel-list"
+                *ngFor="let hostel of hostelsData; let i = index"
+              >
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    [checked]="hostel.selected"
+                    (change)="radioChecked(hostel, i)"
+                    [id]="hostel.Hostel_id"
+                  />
+                  <label class="form-check-label" [for]="hostel.Hostel_id">
+                    {{ hostel.HostelName }}
+                  </label>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-9 col-md-8 col-lg-8 col-sm-12">
+        <div class="col-md-12 col-lg-5 col-xl-12 col-sm-12 mt-3 mb-4">
+          <div class="AddRoom">
+            <h4 class="text-danger">{{ companyName }}</h4>
+            <button
+              class="btn btn-primary float-right"
+              (click)="open(content)"
+              (click)="editRoomRates(null, 'add')"
+            >
+              Add Room Rates
+            </button>
+          </div>
+          <ng-template #content let-modal>
+            <div class="modal-body">
+              <div class="modalheader mb-3 d-flex">
+                <h4 class="modal-title" id="modal-basic-title">
+                  {{
+                    !this.roomRates.id ? "Add Room Rates" : "Edit Room Rates"
+                  }}
+                </h4>
+                <button
+                  type="button"
+                  class="btn-close"
+                  aria-label="Close"
+                  (click)="modal.dismiss()"
+                ></button>
+              </div>
+              <form class="form" #form="ngForm">
+                <ng-select
+                  *ngIf="hosteldropdown"
+                  [disabled]="roomRates.id"
+                  class="mb-3"
+                  #HostelName="ngModel"
+                  [(ngModel)]="roomRates.HostelName"
+                  name="HostelName"
+                  placeholder="Select Hostel"
+                  (change)="selectedHosted($event)"
+                >
+                  <ng-option
+                    *ngFor="let hostel of hostelsData"
+                    [value]="hostel.HostelName"
+                    >{{ hostel.HostelName }}</ng-option
+                  >
+                </ng-select>
+                <ng-select
+                  placeholder="Room Type"
+                  class="mb-3"
+                  [disabled]="roomRates.id"
+                  name="RoomType"
+                  #RoomType="ngModel"
+                  [(ngModel)]="roomRates.RoomType"
+                >
+                  <ng-option
+                    *ngFor="let hostelRooms of SelectedHostelroomtypes"
+                    [value]="hostelRooms.RoomType"
+                    >{{ hostelRooms.RoomType }}</ng-option
+                  >
+                </ng-select>
+                <p class="text-danger m-0 errorMsg">{{ errShare }}</p>
+                <div class="input-group mb-3">
+                  <span class="input-group-text text-1"
+                    >Price Without Food
+                    <img src="../../../../assets/images/ruppee-icon.png" alt=""
+                  /></span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    #PriceWithoutFood="ngModel"
+                    name="PriceWithoutFood"
+                    [(ngModel)]="roomRates.PriceWithoutFood"
+                    placeholder="Price without food"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text text-1"
+                    >Price With Food
+                    <img src="../../../../assets/images/ruppee-icon.png" alt=""
+                  /></span>
+                  <input
+                    type="text"
+                    #PriceWithFood="ngModel"
+                    name="PriceWithFood"
+                    [(ngModel)]="roomRates.PriceWithFood"
+                    class="form-control"
+                    placeholder="Price with food"
+                  />
+                </div>
+              </form>
+            </div>
+
+            <button
+              *ngIf="show"
+              type="button"
+              class="btn update-btn mb-3"
+              (click)="
+                createRoomRates(form, modal, PriceWithFood, PriceWithoutFood)
+              "
+            >
+              {{ this.roomRates.id ? "Update" : "Save" }}
+            </button>
+            <button *ngIf="hide" class="btn submit-btn mb-4" type="button">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </button>
+          </ng-template>
+        </div>
+        <div class="row sec-row">
+          <div
+            class="bed-cols col-sm-12 col-md-6 col-lg-3 col-xl-4"
+            *ngFor="let roomrate of Rooms"
+          >
+            <div class="card beds-card">
+              <div class="card-body">
+                <div class="sharing-cls mb-3">
+                  <p class="m-0 fw-bold">{{ roomrate.RoomType }}</p>
+                  <img
+                    class="cursor-pointer"
+                    src="../../../../assets/images/Edit-icon.png"
+                    alt=""
+                    (click)="open(content)"
+                    (click)="editRoomRates(roomrate, 'edit')"
+                  />
+                </div>
+                <div class="foodrates mb-3">
+                  <p class="p-0">
+                    Rent With Food: {{ roomrate.PriceWithFood }}
+                  </p>
+                  <p class="p-0">
+                    Rent Without Food: {{ roomrate.PriceWithoutFood }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

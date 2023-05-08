@@ -1,0 +1,179 @@
+<app-header></app-header>
+
+<div class="globalContainer">
+  <div class="container-fluid">
+    <p>
+      <b
+        ><a routerLink="/settings" class="text-decoration-none text-black">
+          Settings</a
+        ></b
+      >
+      > User Details
+    </p>
+    <div class="companies-search-div">
+      <div class="input-group search-group mb-2 w-50">
+        <input
+          type="search"
+          class="form-control shadow-none searchCompany"
+          name="searchCompany"
+          placeholder="Search for Companies"
+          #search
+        />
+        <span class="searchCompany-input-group-text input-group-text"
+          ><img
+            src="../../../../assets/images/search-icon.png"
+            class="search-icon"
+            alt=""
+        /></span>
+      </div>
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        (click)="editCompany(null, 'add')"
+        (click)="open(content)"
+      >
+        Add User
+      </button>
+
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">
+            Add Supervisor Details
+          </h4>
+          <button
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+            (click)="modal.dismiss()"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form class="form" aria-required="true" #form="ngForm">
+            <div class="input-group mb-3">
+              <span class="input-group-text"
+                ><img
+                  src="../../../../assets/images/contactName-icon.png"
+                  alt=""
+              /></span>
+              <input
+                type="text"
+                name="Name"
+                #Name="ngModel"
+                [(ngModel)]="userFormData.Name"
+                required
+                class="form-control"
+                placeholder="Supervisor Name"
+              />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text"
+                ><img src="../../../../assets/images/contactNumber.png" alt=""
+              /></span>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Contact Number"
+                name="Phone_Number"
+                #Phone_Number="ngModel"
+                [(ngModel)]="userFormData.Phone_Number"
+                required
+              />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text"
+                ><img src="../../../../assets/images/email-icon.png" alt=""
+              /></span>
+              <input
+                type="email"
+                class="form-control"
+                placeholder="User ID"
+                name="email"
+                #email="ngModel"
+                [(ngModel)]="userFormData.email"
+                required
+              />
+            </div>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text"
+                ><img src="../../../../assets/images/pass-lock.png" alt=""
+              /></span>
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                name="password"
+                #password="ngModel"
+                [(ngModel)]="userFormData.password"
+                required
+              />
+            </div>
+            <div class="input-group mb-3 selectHostels">
+              <img
+                src="../../../../assets/images/companyName-icon.png"
+                alt=""
+              />
+              <b><label for="" class="form-label">Select Hostels</label></b>
+            </div>
+
+            <!-- {{ userFormData.hostels | json }} -->
+            <ng-select
+              name="hostel"
+              placeholder="Select Hostel"
+              #hostel="ngModel"
+              [multiple]="true"
+              [(ngModel)]="userFormData.hostelsArr"
+            >
+              <ng-option
+                *ngFor="let hostel of hostelsData"
+                [value]="hostel.HostelName"
+                >{{ hostel.HostelName }}</ng-option
+              >
+            </ng-select>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-primary mb-3"
+            (click)="createUser(form, modal)"
+          >
+            Save
+          </button>
+        </div>
+      </ng-template>
+    </div>
+    <table class="table">
+      <thead class="table table-info">
+        <tr>
+          <th>Supervisor Name</th>
+          <th>Contact Number</th>
+          <th>User ID</th>
+          <th>Hostel</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of users">
+          <td>{{ i.Name }}</td>
+          <td>{{ i.Phone_Number }}</td>
+          <td>{{ i.email }}</td>
+          <td>
+            {{ i.hostelsStr }}
+          </td>
+          <td
+            class="btn"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="editCompany(i, 'edit')"
+            (click)="open(content)"
+          >
+            <img src="../../../../assets/images/Edit-icon.png" alt="" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

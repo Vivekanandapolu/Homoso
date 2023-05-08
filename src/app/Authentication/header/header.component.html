@@ -1,0 +1,237 @@
+<div class="navigation">
+  <div class="container-fluid">
+    <div class="flex-nowrap">
+      <div class="navbar side_bar" #myid>
+        <div
+          class="d-flex flex-column align-items-center align-items-sm-start pt-2 text-white min-vh-100"
+          id="side-div-1"
+        >
+          <div class="menu-div">
+            <button
+              class="navbar-toggler menu-btn"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#menu"
+              (click)="openNav(myid, listitems, layer)"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+          <div class="menu-div-1">
+            <img
+              class="menu-icon"
+              src="../../../assets/images/menu_icon.png"
+              alt=""
+            />
+          </div>
+          <div class="list-items" #listitems>
+            <ul
+              class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+              id="menu"
+              #items
+            >
+              <li class="nav-item active">
+                <a
+                  routerLinkActive="active"
+                  routerLink="/dashboard"
+                  class="nav-link cursor-pointer side-nav-links"
+                >
+                  <span
+                    ><img
+                      src="../../../assets/images/dashboard_icon.png"
+                      alt=""
+                  /></span>
+                  <p class="ms-1 d-none d-sm-inline">Dashboard</p>
+                </a>
+              </li>
+              <li>
+                <a
+                  routerLinkActive="active"
+                  routerLink="/tenants"
+                  class="nav-link cursor-pointer side-nav-links"
+                >
+                  <span
+                    ><img src="../../../assets/images/home_icon.png" alt=""
+                  /></span>
+                  <p class="ms-1 d-none d-sm-inline">Tenants</p></a
+                >
+              </li>
+              <li>
+                <a
+                  routerLinkActive="active"
+                  routerLink="/expenses"
+                  class="nav-link cursor-pointer side-nav-links"
+                >
+                  <span
+                    ><img src="../../../assets/images/expenses_icon.png" alt=""
+                  /></span>
+                  <p class="d-none d-sm-inline">Expenses</p></a
+                >
+              </li>
+              <li>
+                <a
+                  routerLinkActive="active"
+                  routerLink="/reports"
+                  class="nav-link cursor-pointer side-nav-links"
+                >
+                  <span
+                    ><img src="../../../assets/images/report_icon.png" alt=""
+                  /></span>
+                  <p class="d-none d-sm-inline">Reports</p></a
+                >
+              </li>
+
+              <li>
+                <a
+                  routerLinkActive="active"
+                  routerLink="/settings"
+                  class="nav-link cursor-pointer side-nav-links"
+                >
+                  <span
+                    ><img
+                      src="../../../assets/images/configure_icons.png"
+                      alt=""
+                  /></span>
+                  <p class="ms-1 d-none d-sm-inline">Settings</p></a
+                >
+              </li>
+            </ul>
+          </div>
+          <hr />
+        </div>
+      </div>
+
+      <div class="header-nav">
+        <nav
+          class="navbar header navbar-expand-lg navbar-expand-sm navbar-expand-md"
+        >
+          <div class="container-fluid collapse navbar-collapse" id="profile">
+            <a class="navbar-brand nav-logo"
+              ><img src="../../../assets/images/logo ppp 2.png" alt=""
+            /></a>
+            <div class="nav-profile-sec d-flex">
+              <p class="nav-profile-sec-p m-0">want call support? Call:</p>
+              <p class="m-0 nav-profile-sec-p-1">(040)-45356576</p>
+
+              <div ngbDropdown class="d-flex main-profile-div">
+                <button class="btn m-0 p-0" id="gfg" ngbDropdownToggle>
+                  <img
+                    class="profile-pic"
+                    src="../../../assets/images/profile-img.png"
+                    alt=""
+                  />
+                  <p>{{ this.username }}</p>
+                </button>
+                <div ngbDropdownMenu="gfg">
+                  <div class="profile-details">
+                    <div class="div-1">
+                      <p class="name">{{ this.username }}</p>
+                      <p class="img-p">
+                        <img
+                          class="profile-pic-1"
+                          src="../../../assets/images/profile-pic-2.png"
+                          alt=""
+                        />
+                      </p>
+                    </div>
+                    <p class="type">{{ this.user_type }}</p>
+                    <p class="id">{{ this.user_id }}</p>
+                  </div>
+                  <button
+                    ngbDropdownItem
+                    class="drop-btns"
+                    (click)="open(content)"
+                  >
+                    Change Password
+                  </button>
+                  <button ngbDropdownItem class="drop-btns" (click)="logout()">
+                    Log out
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="layer-div" #layer></div>
+
+    <ng-template #content let-modal>
+      <div class="modal-body">
+        <div class="modalheader">
+          <h4 class="modal-title" id="modal-basic-title">Change Password</h4>
+          <button
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+            (click)="modal.dismiss()"
+          ></button>
+        </div>
+        <form class="form" #form="ngForm">
+          <div class="input-group mb-3">
+            <span class="input-group-text"
+              ><img src="../../../assets/images/pass-lock.png" alt=""
+            /></span>
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Current Password"
+              name="CurrentPassword"
+              #CurrentPassword="ngModel"
+              [(ngModel)]="changepasswordData.CurrentPassword"
+            />
+          </div>
+          <p *ngIf="currErrorMsg" class="currErrorMsg">
+            {{ currErrorMsg }}
+          </p>
+          <div class="input-group mb-3">
+            <span class="input-group-text"
+              ><img src="../../../assets/images/pass-lock.png" alt=""
+            /></span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="New Password"
+              name="NewPassword"
+              #NewPassword="ngModel"
+              [(ngModel)]="changepasswordData.NewPassword"
+            />
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-text"
+              ><img src="../../../assets/images/pass-lock.png" alt=""
+            /></span>
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Confirm Password"
+              name="ConfirmPassword"
+              #ConfirmPassword="ngModel"
+              [(ngModel)]="changepasswordData.ConfirmPassword"
+            />
+          </div>
+          <p *ngIf="emailErrorMsg" class="errorMsg">
+            {{ emailErrorMsg }}
+          </p>
+        </form>
+      </div>
+
+      <button
+        *ngIf="show"
+        type="button"
+        class="btn update-btn mb-3"
+        (click)="
+          changePass(form, modal, CurrentPassword, NewPassword, ConfirmPassword)
+        "
+      >
+        Update
+      </button>
+      <button *ngIf="hide" class="btn submit-btn mb-4" type="button">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </button>
+    </ng-template>
+  </div>
+</div>
