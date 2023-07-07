@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { apiurls } from 'src/app/shared/apiurls';
 
 @Component({
   selector: 'app-bed-status',
@@ -19,7 +20,7 @@ export class BedStatusComponent implements OnInit {
     this.getCompanies()
   }
   getCompanies() {
-    this.http.get("http://192.168.1.87:8000/companies/show").subscribe((res: any) => {
+    this.http.get(apiurls.getComapnies).subscribe((res: any) => {
       this.resposeData = res
       console.log(this.resposeData)
       for (let i in this.resposeData) {
@@ -29,7 +30,7 @@ export class BedStatusComponent implements OnInit {
     })
   }
   getHostels() {
-    this.http.get("http://192.168.1.87:8000/hostels/show").subscribe((res) => {
+    this.http.get(apiurls.getHostels).subscribe((res) => {
       this.hostelsData = res
       console.log(this.hostelsData)
     })

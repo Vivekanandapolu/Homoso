@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { window } from 'rxjs';
+import { apiurls } from 'src/app/shared/apiurls';
 var window1: any = window;
 @Component({
   selector: 'app-companies',
@@ -312,7 +313,7 @@ export class CompaniesComponent implements OnInit {
   }
 
   companies(): void {
-    this.http.get("http://192.168.1.89:8000/companies/show").subscribe(res => {
+    this.http.get(apiurls.getComapnies).subscribe(res => {
       this.resposeData = res
     })
   }
@@ -321,7 +322,7 @@ export class CompaniesComponent implements OnInit {
     console.log(form.value)
     if (form.valid) {
       if (!this.companyData.Company_id) {
-        this.http.post("http://192.168.1.89:8000/companies/create", form.value).subscribe((res) => {
+        this.http.post(apiurls.createCompany, form.value).subscribe((res) => {
           console.log(res)
           this.companyData = {}
           this.toastr.success('Company Added Successfully', '', {
@@ -330,7 +331,7 @@ export class CompaniesComponent implements OnInit {
         })
       }
       if (this.companyData.Company_id) {
-        this.http.put("http://192.168.1.89:8000/companies/edit_company/" + this.companyData.Company_id, form.value).subscribe((res) => {
+        this.http.put(apiurls.editCompany + this.companyData.Company_id, form.value).subscribe((res) => {
           console.log(res)
           this.toastr.success('updated successfully', '', { timeOut: 1000 });
         })

@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 // import { CommonModule } from '@angular/common';
 
 import { NgForm } from '@angular/forms'
+import { apiurls } from 'src/app/shared/apiurls';
 
 @Component({
   selector: 'app-hostels',
@@ -196,7 +197,7 @@ export class HostelsComponent implements OnInit {
   }
 
   getData() {
-    this.http.get("http://192.168.1.89:8000/hostels/show").subscribe((res) => {
+    this.http.get(apiurls.getHostels).subscribe((res) => {
       // console.log(res)
       this.hostelsData = res
       // console.log(this.hostelsData)
@@ -204,7 +205,7 @@ export class HostelsComponent implements OnInit {
 
   }
   comp_Name() {
-    this.http.get("http://192.168.1.89:8000/hostels/companyname").subscribe((res: any) => {
+    this.http.get(apiurls.comapanyname).subscribe((res: any) => {
       // console.log(res)
       for (let i in res) {
         this.compayName = res[i]
@@ -216,7 +217,7 @@ export class HostelsComponent implements OnInit {
       console.log(form.value)
       if (!this.Hostels.Hostel_id) {
         this.addClass = "#exampleModal"
-        this.http.post("http://192.168.1.89:8000/hostels/create/", form.value).subscribe((res) => {
+        this.http.post(apiurls.createhostel, form.value).subscribe((res) => {
           console.log(res)
           this.toastr.success('Hostel Added Successfully', '', {
             timeOut: 3000,
@@ -226,7 +227,7 @@ export class HostelsComponent implements OnInit {
       }
       if (this.Hostels.Hostel_id) {
         this.addClass = null
-        this.http.put("http://192.168.1.89:8000/hostels/edit_hostel/" + this.Hostels.Hostel_id, form.value).subscribe((res) => {
+        this.http.put(apiurls.editHostel + this.Hostels.Hostel_id, form.value).subscribe((res) => {
           console.log(res)
           this.toastr.success('updated successfully', '', { timeOut: 1000 });
           this.getData()

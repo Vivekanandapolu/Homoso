@@ -28,6 +28,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { RoomsComponent } from './Home/settings/rooms/rooms.component';
 import { RoomTypesComponent } from './Home/settings/room-types/room-types.component';
 import { RoomRatesComponent } from './Home/settings/room-rates/room-rates.component'
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,9 @@ import { RoomRatesComponent } from './Home/settings/room-rates/room-rates.compon
     CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgSelectModule
+    NgSelectModule,
+    RouterModule.forRoot([])
+
   ],
   providers: [
     {

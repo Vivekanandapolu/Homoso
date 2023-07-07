@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { apiurls } from 'src/app/shared/apiurls';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router, private modalService: NgbModal, private http: HttpClient, private toastr: ToastrService) {
   }
   ngOnInit(): void {
-    this.http.get("http://192.168.1.89:8000/auth/user").subscribe((res: any) => {
+    this.http.get(apiurls.getUser).subscribe((res: any) => {
 
       this.user_type = localStorage.getItem('user_type')
       this.username = res.name
@@ -80,7 +81,7 @@ export class HeaderComponent implements OnInit {
       this.show = false
       this.hide = true
       if (form.valid) {
-        this.http.put('http://192.168.1.89:8000/auth/change_password', form.value).subscribe((res: any) => {
+        this.http.put(apiurls.changePassword, form.value).subscribe((res: any) => {
           console.log(res)
 
           // this.emailErrorMsg = null

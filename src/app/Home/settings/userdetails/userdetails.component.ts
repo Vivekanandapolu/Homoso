@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { apiurls } from 'src/app/shared/apiurls';
 
 @Component({
   selector: 'app-userdetails',
@@ -27,7 +28,7 @@ export class UserdetailsComponent implements OnInit {
     this.modalService.open(content, { size: 'md', backdrop: 'static', centered: true })
   }
   getUsersData() {
-    this.http.get("http://192.168.1.89:8000/user/show_user").subscribe((res: any) => {
+    this.http.get(apiurls.getUsers).subscribe((res: any) => {
       if (res) {
         // this.users = res
         this.users = res.map((each: any) => {
@@ -35,14 +36,14 @@ export class UserdetailsComponent implements OnInit {
             each['hostelsStr'] = each.hostels.map((obj: any) => obj.HostelName).join(",");
             each['hostelsArr'] = each.hostels.map((obj: any) => obj.HostelName);
           }
-          return each 
+          return each
         })
         console.log(this.users)
       }
     })
   }
   getHostelsData() {
-    this.http.get("http://192.168.1.89:8000/hostels/show").subscribe((res: any) => {
+    this.http.get(apiurls.getHostels).subscribe((res: any) => {
       if (res.length) {
         this.hostelsData = res
       }
@@ -53,7 +54,7 @@ export class UserdetailsComponent implements OnInit {
       console.log(form.value)
       if (!this.userFormData.user_id) {
 
-        this.http.post("http://192.168.1.89:8000/user/create", form.value).subscribe((res) => {
+        this.http.post(apiurls.createUser, form.value).subscribe((res) => {
           console.log(res)
           this.userFormData = {}
           this.toaster.success('User Added Successfully', '', {
@@ -66,7 +67,7 @@ export class UserdetailsComponent implements OnInit {
       }
 
       if (this.userFormData.user_id) {
-        this.http.put("http://192.168.1.89:8000/user/edit_user/" + this.userFormData.user_id, form.value).subscribe((res) => {
+        this.http.put(apiurls.editUser + this.userFormData.user_id, form.value).subscribe((res) => {
           console.log(res)
           this.toaster.success('updated successfully', '', { timeOut: 1000 });
           this.getUsersData()

@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 // import { CommonModule } from '@angular/common';
-
-
+import { environment } from 'src/environments/environment';
+import { apiurls } from 'src/app/shared/apiurls';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
     else {
       this.emailErrorMsg = null
 
-      this.http.post("http://192.168.1.89:8000/auth/login", dataObj).subscribe((res: any) => {
+      this.http.post(apiurls.login, dataObj).subscribe((res: any) => {
         console.log(res)
         if (res?.User) {
           this.router.navigate(["tenants"])

@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { apiurls } from 'src/app/shared/apiurls';
 
 @Component({
   selector: 'app-room-rates',
@@ -33,7 +34,7 @@ export class RoomRatesComponent {
   }
 
   getHostels() {
-    this.http.get("http://192.168.1.89:8000/hostels/show").subscribe((res: any) => {
+    this.http.get(apiurls.getHostels).subscribe((res: any) => {
       this.hostelsData = res
       console.log(this.hostelsData)
       if (this.hostelsData.length) {
@@ -45,7 +46,7 @@ export class RoomRatesComponent {
   }
 
   companies(): void {
-    this.http.get("http://192.168.1.89:8000/companies/show").subscribe((res: any) => {
+    this.http.get(apiurls.getComapnies).subscribe((res: any) => {
       for (let i in res) {
         this.companyName = res[i].CompanyName
       }
@@ -75,7 +76,7 @@ export class RoomRatesComponent {
   gethostelsData(item: any) {
     console.log(item)
     this.Rooms = []
-    this.http.get('http://192.168.1.89:8000/roomtype/show').subscribe((res: any) => {
+    this.http.get(apiurls.getRoomTypes).subscribe((res: any) => {
 
       res.filter((room: any) => {
         if (item?.Hostel_id == room?.hostel_id) {
@@ -106,7 +107,7 @@ export class RoomRatesComponent {
         this.savebtn = false
         if (!this.roomTypes.id) {
           this.errorMsg = ''
-          this.http.post('http://192.168.1.89:8000/roomtype/create', form.value).subscribe((res: any) => {
+          this.http.post(apiurls.createRoomTypes, form.value).subscribe((res: any) => {
             console.log(res)
             this.loader = false
             this.savebtn = true
@@ -128,7 +129,7 @@ export class RoomRatesComponent {
         }
         if (this.roomTypes.id) {
           this.errorMsg = null
-          this.http.put('http://192.168.1.89:8000/roomtype/edit/' + this.roomTypes.id, form.value).subscribe((res: any) => {
+          this.http.put(apiurls.editRoomtypes + this.roomTypes.id, form.value).subscribe((res: any) => {
             console.log(res)
             if (res) {
               this.toaster.success('Room Type Updated Successfully', '', {
@@ -161,7 +162,7 @@ export class RoomRatesComponent {
     }
   }
   getRoomTypes() {
-    this.http.get('http://192.168.1.89:8000/roomtype/show').subscribe(res => {
+    this.http.get(apiurls.getRoomTypes).subscribe(res => {
       this.RoomTypes = res
       console.log(res)
     })

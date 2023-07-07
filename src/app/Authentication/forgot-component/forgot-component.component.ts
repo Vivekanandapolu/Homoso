@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { apiurls } from 'src/app/shared/apiurls';
 
 @Component({
   selector: 'app-forgot-component',
@@ -33,7 +34,7 @@ export class ForgotComponentComponent implements OnInit {
       let dataObj = {
         email: emails?.value,
       }
-      this.http.post("http://192.168.1.89:8000/auth/forgot_password", dataObj).subscribe((res: any) => {
+      this.http.post(apiurls.forgotPassword, dataObj).subscribe((res: any) => {
         console.log(res)
         if (res?.success) {
           this.toastr.success('Password Generated', '', {

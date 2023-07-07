@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { apiurls } from 'src/app/shared/apiurls';
 
 @Component({
   selector: 'app-rooms',
@@ -37,7 +38,7 @@ export class RoomsComponent {
 
   }
   getCompanies() {
-    this.http.get("http://192.168.1.89:8000/companies/show").subscribe((res: any) => {
+    this.http.get(apiurls.getComapnies).subscribe((res: any) => {
       this.resposeData = res
       console.log(this.resposeData)
       for (let i in this.resposeData) {
@@ -47,7 +48,7 @@ export class RoomsComponent {
     })
   }
   getHostels() {
-    this.http.get("http://192.168.1.89:8000/hostels/show").subscribe((res) => {
+    this.http.get(apiurls.getHostels).subscribe((res) => {
       this.hostelsData = res
       console.log(this.hostelsData)
       if (this.hostelsData.length) {
@@ -163,7 +164,7 @@ export class RoomsComponent {
     this.ngbMOdalService.open(content, { backdrop: 'static' })
   }
   getRoomTypes() {
-    this.http.get('http://192.168.1.89:8000/roomtype/show').subscribe(res => {
+    this.http.get(apiurls.getRoomTypes).subscribe(res => {
       this.RoomTypes = res
       console.log(this.RoomTypes)
     })
@@ -171,7 +172,7 @@ export class RoomsComponent {
 
   gethostelsData() {
     this.Rooms = []
-    this.http.get('http://192.168.1.89:8000/roomrates/show').subscribe((res: any) => {
+    this.http.get(apiurls.getRoomrates).subscribe((res: any) => {
       this.RoomRates = res
       console.log(this.RoomRates)
     })

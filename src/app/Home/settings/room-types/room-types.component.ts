@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { apiurls } from 'src/app/shared/apiurls';
 
 @Component({
   selector: 'app-room-types',
@@ -35,7 +36,7 @@ export class RoomTypesComponent {
   }
 
   getHostels() {
-    this.http.get("http://192.168.1.89:8000/hostels/show").subscribe((res: any) => {
+    this.http.get(apiurls.getHostels).subscribe((res: any) => {
       this.hostelsData = res
       console.log(this.hostelsData)
       if (this.hostelsData.length) {
@@ -47,7 +48,7 @@ export class RoomTypesComponent {
   }
 
   companies(): void {
-    this.http.get("http://192.168.1.89:8000/companies/show").subscribe((res: any) => {
+    this.http.get(apiurls.getComapnies).subscribe((res: any) => {
       for (let i in res) {
         this.companyName = res[i].CompanyName
       }
@@ -73,7 +74,7 @@ export class RoomTypesComponent {
   }
   gethostelsData(item: any) {
     this.Rooms = []
-    this.http.get('http://192.168.1.89:8000/roomrates/show').subscribe((res: any) => {
+    this.http.get(apiurls.getRoomrates).subscribe((res: any) => {
       console.log(res)
       res.filter((room: any) => {
         if (item?.Hostel_id == room?.Hostel_ID) {
@@ -108,7 +109,7 @@ export class RoomTypesComponent {
           this.hosteldropdown = true
           this.roomRates.PriceWithFood = String(this.roomRates.PriceWithFood)
           this.roomRates.PriceWithoutFood = String(this.roomRates.PriceWithoutFood)
-          this.http.post('http://192.168.1.89:8000/roomrates/create', this.roomRates).subscribe((res: any) => {
+          this.http.post(apiurls.createRoomRates, this.roomRates).subscribe((res: any) => {
 
             if (res.msg) {
               this.errShare = 'Sharing Type Already Exist'
@@ -134,7 +135,7 @@ export class RoomTypesComponent {
           if (this.roomRates.id) {
             this.roomRates.PriceWithFood = String(this.roomRates.PriceWithFood)
             this.roomRates.PriceWithoutFood = String(this.roomRates.PriceWithoutFood)
-            this.http.put('http://192.168.1.89:8000/roomrates/edit/' + this.roomRates.id, this.roomRates).subscribe((res: any) => {
+            this.http.put(apiurls.editRoomrates + this.roomRates.id, this.roomRates).subscribe((res: any) => {
               console.log(res)
               this.hosteldropdown = false
               if (res.transaction) {
@@ -164,7 +165,7 @@ export class RoomTypesComponent {
     }
   }
   getRoomTypes() {
-    this.http.get('http://192.168.1.89:8000/roomtype/show').subscribe(res => {
+    this.http.get(apiurls.getRoomrates).subscribe(res => {
       this.RoomTypes = res
       console.log(res)
     })
